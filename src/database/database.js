@@ -21,11 +21,11 @@ import { Sequelize } from "sequelize";
 export const sequelize = new Sequelize({
 
   dialect: 'postgres',
-  host: process.env.DATABASE_HOST,
+  host: 'ep-flat-limit-a4esvgy6-pooler.us-east-1.aws.neon.tech',
   port: 5432,
-  database: process.env.DATABASE_DATABASE,
-  username: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
+  database: 'verceldb',
+  username: 'default',
+  password: '3nOMTc0pyHIK',
   dialectOptions: {
     ssl: {
       require: true,
