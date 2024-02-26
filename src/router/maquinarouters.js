@@ -12,6 +12,7 @@ import {
   buscarNuc
 } from "../controller/maquina/maquinacontroller.js";
 import multer from 'multer';
+import cron from 'node-cron';
 
 
 import path from 'path';
@@ -29,13 +30,8 @@ const upload = multer({ storage });
 const router = Router();
 
 
-// const filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(filename);
-// const storage = multer({ dest: '/public' });
-// const upload = multer({ storage });
-// const router = Router();
-
 // Nombres de campos como constantes
+
 const camposDeArchivos = [
   { name: 'fotografia_billetero' },
   { name: 'fotografia_serial_maquina' },
@@ -56,10 +52,22 @@ const camposDeArchivos = [
 ];
 
 const camposDeArchivos_editados = [
-  { name: 'Factura_compra' },
-  { name: 'certificado_de_importacion' },
-  { name: 'fotografia_de_maquina' },
-  { name: 'serial_modelo' },
+  { name: 'fotografia_billetero' },
+  { name: 'fotografia_serial_maquina' },
+  { name: 'fotografia_de_pantalla_superior' },
+  { name: 'fotografia_de_pantalla_inferior' },
+  { name: 'fotografia_la_placa' },
+  { name: 'fotografia_la_cpu' },
+  { name: 'fotografia_la_maquina' },
+  { name: 'fotografia_la_libreria' },
+  { name: 'fotografia_la_compra_maquina' },
+  { name: 'fotografia_la_importacion_maquina' },
+  { name: 'fotografia_la_importacion_billetero' },
+  { name: 'fotografia_la_serial_billetero' },
+  { name: 'fotografia_la_importacion_pantallas' },
+  { name: 'fotografia_la_serial_pantallas' },
+  { name: 'fotografia_la_importacion_cpu' },
+  { name: 'fotografia_la_serial_cpu' },
 ];
 
 router.post('/maquinas', storage.fields(camposDeArchivos), crear)
@@ -71,9 +79,29 @@ router.delete('/maquina/:id', eliminarmaquina_id);
 router.get('/maquina/:ubicacion_de_la_maquina', buscar_id);
 router.get('/maquinas/:Numero_serial', buscar_serial);
 router.put('/maquina/:id', editar_maquina);
-router.put('/maquinas/:N_serial', storage.fields(camposDeArchivos_editados), editar_maquina1);
+router.put('/maquinas/:Numero_serial', storage.fields(camposDeArchivos_editados), editar_maquina1);
 
 
+cron.schedule('* * * * *', () => {
+  // Lógica para eliminar archivos en el directorio público
+  fs.readdir(publicPath, (err, files) => {
+      if (err) {
+          console.error('Error al leer el directorio:', err);
+          return;
+      }
+      
+      files.forEach(file => {
+          const filePath = path.join(publicPath, file);
+          fs.unlink(filePath, err => {
+              if (err) {
+                  console.error('Error al eliminar el archivo:', err);
+                  return;
+              }
+              console.log('Archivo eliminado:', filePath);
+          });
+      });
+  });
+});
 
 //Respuestas HTTP CORS
 router.use(function (req, res, next) {

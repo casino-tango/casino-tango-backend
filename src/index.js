@@ -15,7 +15,6 @@ async function main() {
     await sequelize.sync({force:false}) //NO TOCAR O CAMBIAR POR TRUE
     app.listen(process.env.PORT,()=>{
         console.log(`el puerto esta escuchando http://localhost:${PORT}`);
-
     })
 
 } catch (error) {

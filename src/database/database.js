@@ -19,13 +19,12 @@ import { Sequelize } from "sequelize";
 //  *******conexion con vercel****
 
 export const sequelize = new Sequelize({
-
   dialect: 'postgres',
-  host: 'ep-flat-limit-a4esvgy6-pooler.us-east-1.aws.neon.tech',
+  host: process.env.DATABASE_HOST,
   port: 5432,
-  database: 'verceldb',
-  username: 'default',
-  password: '3nOMTc0pyHIK',
+  database: process.env.DATABASE_DATABASE,
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
   dialectOptions: {
     ssl: {
       require: true,

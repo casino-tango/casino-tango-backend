@@ -14,11 +14,12 @@ import {
 
 //import  validar para proteger la rutas q solo el user con token puede hacer el crud
 // import { validar } from "../middleware/validertoken.js";
+
 import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import fs from 'fs'; // Import the 'fs' module
-// import { validar } from "../middleware/validertoken.js";
+
+
 
 const filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(filename);
@@ -28,11 +29,6 @@ const storage = multer({ dest: publicPath });
 const upload = multer({ storage });
 const router = Router();
 
-// const filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(filename);
-// const storage =  multer({dest: '/public'});
-// const upload = multer({ storage });
-// const router = Router();
 
 const camposdeImg = [
   { name: 'Factura_compra_ruleta' },

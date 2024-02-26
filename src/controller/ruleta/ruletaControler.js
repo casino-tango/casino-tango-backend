@@ -22,7 +22,6 @@ export async function mirar(req, res) {
 
     }
 }
-
 //creaer por ruleta
 export async function crear(req, res) {
     try {
@@ -182,7 +181,6 @@ export async function crear(req, res) {
         res.status(500).json({ message: error.message });
     }
 }
-
 //eliminar ruleta
 export async function eliminar(req, res) {
 
@@ -202,7 +200,6 @@ export async function eliminar(req, res) {
         res.status(300).json({ message: error.message });
     }
 }
-
 export async function eliminar1(req, res) {
 
     try {
@@ -221,8 +218,6 @@ export async function eliminar1(req, res) {
 
     }
 }
-
-
 export async function eliminarNuc(req, res) {
 
     try {
@@ -241,7 +236,6 @@ export async function eliminarNuc(req, res) {
 
     }
 }
-
 //buscar
 export async function buscar(req, res) {
     const { N_serial } = req.params
