@@ -20,19 +20,19 @@ import { fileURLToPath } from 'url';
 import fs from 'fs'; // Import the 'fs' module
 // import { validar } from "../middleware/validertoken.js";
 
-// const filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(filename);
-// const publicPath = path.join(__dirname, '../public');
-
-// const storage = multer({ dest: publicPath });s
-// const upload = multer({ storage });
-// const router = Router();
-
 const filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(filename);
-const storage =  multer({dest: '/public'});
+const publicPath = path.join(__dirname, '../public');
+
+const storage = multer({ dest: publicPath });
 const upload = multer({ storage });
 const router = Router();
+
+// const filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(filename);
+// const storage =  multer({dest: '/public'});
+// const upload = multer({ storage });
+// const router = Router();
 
 const camposdeImg = [
   { name: 'Factura_compra_ruleta' },
