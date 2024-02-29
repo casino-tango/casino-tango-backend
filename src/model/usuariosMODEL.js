@@ -21,7 +21,8 @@ export const usuarios = sequelize.define('usuario', {
         allowNull: false,
         unique: true
 
-    }
+    },
+ 
 },
     {
         timestamps: false,

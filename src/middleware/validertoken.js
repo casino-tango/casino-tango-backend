@@ -12,6 +12,6 @@ export const validar = (req, res, next) => {
         if (err) return res.status(403).json({ message: 'token invalido' })
         
         req.user = user;
-        next();
+        next();n
     })
 }

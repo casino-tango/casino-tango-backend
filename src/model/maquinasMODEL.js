@@ -56,7 +56,6 @@ export const maquina = sequelize.define('maquinas', {
             'Popayán Centro Comercial Terraplaza Casino Tango',
             'Pasto Parque Infantil Casino Tango',
             'Ipiales Casino Tango'
-
         ),
         allowNull: false,
     },

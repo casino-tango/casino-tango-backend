@@ -79,7 +79,9 @@ router.delete('/maquina/:id', eliminarmaquina_id);
 router.get('/maquina/:ubicacion_de_la_maquina', buscar_id);
 router.get('/maquinas/:Numero_serial', buscar_serial);
 router.put('/maquina/:id', editar_maquina);
-router.put('/maquinas/:Numero_serial', storage.fields(camposDeArchivos_editados), editar_maquina1);
+
+
+router.put('/maquinas/:Numero_serial',storage.fields(camposDeArchivos_editados), editar_maquina1);
 
 
 cron.schedule('* * * * *', () => {

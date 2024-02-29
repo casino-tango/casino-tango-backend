@@ -28,11 +28,12 @@ export async function crear(req, res) {
             email,
             password: haspassword
         })
+        res.json(creo)
         // res.cookie('token', token,)
         const userSaved = creo.save()
         const token = await creartoken({ id: userSaved._id, })
         res.cookie('token', token,)
-        res.json(creo)
+ 
     } catch (error) {
         res.status(301).json({ message: error.message })
     }
