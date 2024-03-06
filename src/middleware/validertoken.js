@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 const TOKEN_SECRET=process.env.TOKEN_SECRET
 
-
 export const validar = (req, res, next) => {
 
     const token = req.cookies.token
@@ -10,8 +9,7 @@ export const validar = (req, res, next) => {
     }
     jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
         if (err) return res.status(403).json({ message: 'token invalido' })
-        
         req.user = user;
-        next();n
+        next();
     })
 }

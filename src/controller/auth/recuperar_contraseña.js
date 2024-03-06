@@ -17,34 +17,24 @@ function generarcodigo() {
 }
 
 export const recuperar = async (req, res) => {
-
-
     const { email } = req.body
     const codigo_aleatorio = generarcodigo(6);
-
     // REALIZAR UNA CONSULTA PARA VERIFICAR QUE EL USUARIO SI ESTE REGISTRADO
     // Y REALIZAR UNA CONDICION EN EL CASO DE QUE EXISTA ENVIA EL CORREO
     // SI NO SE LE INFORMA QUE EL EMAIL NO EXISTE
-
     const transporter = nodemailer.createTransport({
         service: "gmail",
         // PRODUCCION
- 
         auth: {
             user: 'unicasinosdecombiasa@gmail.com', // Cambia esto por tu dirección de correo electrónico desde donde se envia el manseje
             pass: 'xjvq rioc tuvc enuk  ', // Cambia esto por el codigo generado por la cuenta
         },
-      
     });
-
     //verificacion
     const verificarCorreo = req.body.email
     const verificacion = await usuarios.findOne({
         where: { email: verificarCorreo }
     });
-
-
-
     const mensaje = {
         from: 'unicasinosdecombiasa@gmail.com',
         to: email, // Email del destinatario obtenido desde la solicitud

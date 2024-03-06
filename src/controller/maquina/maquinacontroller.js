@@ -9,15 +9,16 @@ import { fileURLToPath } from 'url';
 const filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(filename);
 
-import sharp from 'sharp';
-import e from "express";
+
 
 
 export async function mirar(req, res) {
     try {
-        const datos = await maquina.findAll({
+        const datos = await maquina.findAll(
+            {
             include: 'fotografia' // Incluye los datos de la tabla 'fotografia' asociados a cada 'maquina'
-        });
+        }
+        );
         res.json(datos);
     } catch (error) {
         console.error('Error al obtener los datos:', error);

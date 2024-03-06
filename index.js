@@ -8,11 +8,11 @@ import "./src/model/fotografiasMODEL.js";
 import dotenv from 'dotenv';
 dotenv.config();
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 
 async function main() {
     try {
-        await sequelize.sync({ force: false }) //NO TOCAR O CAMBIAR POR TRUE
+        await sequelize.sync({ force:false}) //NO TOCAR O CAMBIAR POR TRUE
         app.listen(process.env.PORT, () => {
             console.log(`el puerto esta escuchando http://localhost:${PORT}`);
         })
