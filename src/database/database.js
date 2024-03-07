@@ -1,9 +1,8 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import { Sequelize } from "sequelize";
+import { POSTGRES_URL} from "../config/config.js";
 
-
-const POSTGRES_URL = process.env.POSTGRES_URL
 
 // * conxion con render*****
 //  export const sequelize = new Sequelize({
