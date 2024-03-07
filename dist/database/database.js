@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 import { Sequelize } from "sequelize";
 
-
 // * conxion con render*****
 //  export const sequelize = new Sequelize({
 //   database: 'casino_tango_b11e',
