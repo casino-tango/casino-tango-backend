@@ -21,7 +21,7 @@ import { Sequelize } from "sequelize";
 export const sequelize = new Sequelize({
   dialect: 'postgres',
   host: process.env.DATABASE_HOST,
-  port: 5432,
+  port: process.env.DB_PORT, // Utiliza la variable de entorno para el puerto
   database: process.env.DATABASE_DATABASE,
   username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
