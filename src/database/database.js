@@ -1,7 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import { Sequelize } from "sequelize";
-import { POSTGRES_URL} from "../config/config.js";
 
 
 // * conxion con render*****
