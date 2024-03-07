@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon index.js ",
     "build": "babel src --out-dir dist",
-    "start": "nodemon src/index.js "
+    "start": "nodemon   /index.js "
   },
   "keywords": [],
   "author": "",
