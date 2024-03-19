@@ -38,7 +38,7 @@ export async function crear(req, res) {
         res.json(creo)
     }catch (error) {
         console.log(error);
-        // res.status(301).json({ message: error.message })
+        res.status(301).json({ message: error.message })
     }
 
 }

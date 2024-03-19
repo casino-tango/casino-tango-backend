@@ -11,13 +11,13 @@ export const maquina = sequelize.define('maquinas', {
     },
     Numero_serial: {
         type: DataTypes.STRING(20),
-        // allowNull: false,
-        // unique: true
+        allowNull: false,
+        unique: true
     },
     Numero_unico_coljuegos: {
         type: DataTypes.STRING(11),
-        // allowNull: false,
-        // unique: true
+        allowNull: false,
+        unique: true
     },
     Numero_billetero: {
         type: DataTypes.STRING(50),
@@ -25,27 +25,27 @@ export const maquina = sequelize.define('maquinas', {
     },
     nombre_de_maquina: {
         type: DataTypes.STRING(20),
-        // allowNull: false
+        allowNull: false
     },
     Numero_interno_maquina: {
         type: DataTypes.INTEGER(10),
-        // allowNull: false
+        allowNull: false
     },
     Numero_serial_pantalla_superior: {
         type: DataTypes.STRING(50),
-        // unique: true
+        unique: true
     },
     Numero_serial_pantalla_inferior: {
         type: DataTypes.STRING(50),
-        // unique: true
+        unique: true
     },
     Marca_pantalla: {
         type: DataTypes.STRING(50),
-        // allowNull: false
+        allowNull: false
     },
     Marca_maquina: {
         type: DataTypes.STRING(50),
-        // allowNull: false
+        allowNull: false
     },
     Numero_cpu:{
         type:DataTypes.STRING
@@ -61,7 +61,7 @@ export const maquina = sequelize.define('maquinas', {
     },
     libreria_maquina: {
         type: DataTypes.STRING(50),
-        // allowNull: false
+        allowNull: false
     },
     cantidad_de_juegos: {
         type: DataTypes.ENUM(
@@ -127,7 +127,7 @@ export const maquina = sequelize.define('maquinas', {
             '60'
 
         ),
-        // allowNull: false,
+        allowNull: false,
     },
     marca_billetero: {
         type: DataTypes.ENUM(
@@ -148,11 +148,11 @@ export const maquina = sequelize.define('maquinas', {
     },
     fecha_instalaccion: {
         type: DataTypes.DATE,
-        // allowNull: false
+        allowNull: false
     },
     fecha_modificacion: {
         type: DataTypes.DATE,
-        // allowNull: false
+        allowNull: false
     },
   
 },

@@ -45,9 +45,7 @@ export const recuperar = async (req, res) => {
         </head>
         <body>
     
-        <center>
-        
-        
+        <center>        
         <a href="https://imgur.com/jRwKYu7"><img src="https://imgur.com/jRwKYu7.png"style="center" width="200px" alt="Imagen adjunta" /></a>
         
             <h2>Recuperación de contraseña</h2>

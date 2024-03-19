@@ -24,14 +24,14 @@ export const usuarios = sequelize.define('usuario', {
     },
     ubicacion_de_la_maquina: {
         type: DataTypes.ENUM(
-            'Popayán Centro Comercial Campanario Casino Tango',
-            'Popayán Centro Comercial Terraplaza Casino Tango',
-            'Pasto Parque Infantil Casino Tango',
-            'Ipiales Casino Tango',
-            'administrador'
+            '01',
+            '02',
+            '03',
+            '04',
         ),
         // allowNull: false,
     },
+   
 
 },
     {

@@ -1,6 +1,0 @@
-{
-    //traducir codigo moderno
-    "presets": [
-        "@babel/preset-env"
-    ]
-}
