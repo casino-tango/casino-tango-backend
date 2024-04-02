@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js ",
-    "build": "babel src --out-dir dist",
-    "start": "nodemon  /index.js "
+    "dev": "node index.js ",
+  
+    "start": "nodemon /index.js "
   },
   "keywords": [],
   "author": "",
