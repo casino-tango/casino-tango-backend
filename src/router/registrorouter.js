@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { crear, mirar } from "../controller/auth/registro.js";
-import { validar } from "../middleware/validertoken.js";
+// import { validar } from "../middleware/validertoken.js";
 
 const router=Router()
 router.post('/registro',crear)
