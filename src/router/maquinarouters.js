@@ -4,11 +4,8 @@ import {
   crear,
   eliminarmaquina_N_serial,
   buscar_serial,
-  // editar_maquina,
   eliminarmaquina_id,
   editar_maquina1,
-  eliminarmaquina_Nuc,
-  buscarNuc,
   mirar_maquina_ubiccacion
 } from "../controller/maquina/maquinacontroller.js";
 import multer from 'multer';
@@ -71,14 +68,12 @@ const camposDeArchivos_editados = [
 
 router.post('/maquinas', storage.fields(camposDeArchivos), crear)
 router.get('/maquinas', mirar)
-router.get('/maquinass/:Numero_serial', buscarNuc)
+
 router.delete('/maquinas/:Numero_serial', eliminarmaquina_N_serial);
-router.delete('/maquinass/:Numero_unico_coljuegos', eliminarmaquina_Nuc);
 router.delete('/maquina/:id', eliminarmaquina_id);
+
 router.get('/maquina/:ubicacion_de_la_maquina', mirar_maquina_ubiccacion);
 router.get('/maquinas/:Numero_serial', buscar_serial);
-// router.put('/maquina/:id', editar_maquina);
-
 
 router.put('/maquinas/:Numero_serial', storage.fields(camposDeArchivos_editados), editar_maquina1);
 

@@ -18,29 +18,29 @@ import { Sequelize } from "sequelize";
 
 //  *******conexion con vercel****
 
-// export const sequelize = new Sequelize({
-//   dialect: 'postgres',
-//   host: process.env.DATABASE_HOST,
-//   port: process.env.DB_PORT, // Utiliza la variable de entorno para el puerto
-//   database: process.env.DATABASE_DATABASE,
-//   username: process.env.DATABASE_USERNAME,
-//   password: process.env.DATABASE_PASSWORD,
-//   dialectOptions: {
-//     ssl: {
-//       require: true,
-//       rejectUnauthorized: false
-//     }
-//   }
-// });
-
-export const sequelize = new Sequelize(
-  process.env.DATABASE_DATABASE,
-  process.env.DATABASE_USERNAME,
-  process.env.DATABASE_PASSWORD,                    
-   {
-    host: process.env.DATABASE_HOST,
+export const sequelize = new Sequelize({
   dialect: 'postgres',
+  host: process.env.DATABASE_HOST,
+  port: process.env.DB_PORT, // Utiliza la variable de entorno para el puerto
+  database: process.env.DATABASE_DATABASE,
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  }
 });
+
+// export const sequelize = new Sequelize(
+//   process.env.DATABASE_DATABASE,
+//   process.env.DATABASE_USERNAME,
+//   process.env.DATABASE_PASSWORD,                    
+//    {
+//     host: process.env.DATABASE_HOST,
+//   dialect: 'postgres',
+// });
 
 
 async function testConnection() {

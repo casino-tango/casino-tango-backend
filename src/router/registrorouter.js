@@ -4,7 +4,7 @@ import { validar } from "../middleware/validertoken.js";
 
 const router=Router()
 router.post('/registro',crear)
-router.get('/registro',validar,mirar)
+router.get('/registro',mirar)
 
 //Respuestas HTTP CORS
 router.use(function (req, res, next) {

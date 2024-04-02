@@ -15,13 +15,14 @@ import nodemailer from 'nodemailer';
 
 export async function mirar(req, res) {
     try {
-        const datos = await maquina.findAll({
-            include: [{
-                model: fotografia,
-                attributes: ['id', 'fotografia_billetero', 'fotografia_la_maquina', /* otras columnas que deseas seleccionar */]
-            }]
-        });
-
+        const datos = await maquina.findAll(
+            {
+                include: [{
+                    model: fotografia,
+                    attributes: ['fotografia_la_maquina',]
+                }]
+            }
+        );
         res.json(datos);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener los datos' });
@@ -176,7 +177,7 @@ export async function mirar_maquina_ubiccacion(req, res) {
     try {
         const buscarid = await maquina.findAll({
             where: { ubicacion_de_la_maquina: ubicacion_de_la_maquina, },
-            include: fotografia
+            // include: fotografia
         })
         res.json(buscarid)
     } catch (error) {
@@ -214,7 +215,7 @@ export async function buscarNuc(req, res) {
 
 
 
-export async function editar_maquina1(req, res) { 
+export async function editar_maquina1(req, res) {
     const { Numero_serial } = req.params;
 
     try {
@@ -235,7 +236,6 @@ export async function editar_maquina1(req, res) {
             marca_billetero,
             lista_de_juegos,
             descripcion_maquina,
-            fecha_instalaccion,
             fecha_modificacion,
             usuarioId
         } = req.body;
@@ -260,7 +260,6 @@ export async function editar_maquina1(req, res) {
                 marca_billetero,
                 lista_de_juegos,
                 descripcion_maquina,
-                fecha_instalaccion,
                 fecha_modificacion,
                 usuarioId,
                 // Actualiza la imagen si se proporciona una nueva.
@@ -319,6 +318,7 @@ export async function editar_maquina1(req, res) {
         const maquinaDespuesDeEditar = await maquina.findByPk(editar_n[1][0].id);
         const nuevosValores = maquinaDespuesDeEditar.toJSON();
 
+        delete valoresOriginales.fecha_modificacion;
 
         // Compara los valores originales con los nuevos valores para determinar qué campos se editaron
         const camposEditados = [];

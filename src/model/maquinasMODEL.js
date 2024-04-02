@@ -21,31 +21,31 @@ export const maquina = sequelize.define('maquinas', {
     },
     Numero_billetero: {
         type: DataTypes.STRING(50),
-        allowNull: false,
+        // allowNull: false,
     },
     nombre_de_maquina: {
         type: DataTypes.STRING(20),
-        allowNull: false
+        // allowNull: false
     },
     Numero_interno_maquina: {
         type: DataTypes.INTEGER(10),
-        allowNull: false
+        // allowNull: false
     },
     Numero_serial_pantalla_superior: {
         type: DataTypes.STRING(50),
-        unique: true
+        // unique: true
     },
     Numero_serial_pantalla_inferior: {
         type: DataTypes.STRING(50),
-        unique: true
+        // unique: true
     },
     Marca_pantalla: {
         type: DataTypes.STRING(50),
-        allowNull: false
+        // allowNull: false
     },
     Marca_maquina: {
         type: DataTypes.STRING(50),
-        allowNull: false
+        // allowNull: false
     },
     Numero_cpu:{
         type:DataTypes.STRING
@@ -57,11 +57,11 @@ export const maquina = sequelize.define('maquinas', {
             'Pasto Parque Infantil Casino Tango',
             'Ipiales Casino Tango'
         ),
-        allowNull: false,
+        // allowNull: false,
     },
     libreria_maquina: {
         type: DataTypes.STRING(50),
-        allowNull: false
+        // allowNull: false
     },
     cantidad_de_juegos: {
         type: DataTypes.ENUM(
@@ -127,7 +127,7 @@ export const maquina = sequelize.define('maquinas', {
             '60'
 
         ),
-        allowNull: false,
+        // allowNull: false,
     },
     marca_billetero: {
         type: DataTypes.ENUM(
@@ -136,7 +136,7 @@ export const maquina = sequelize.define('maquinas', {
             'UBA',
             'ARDAC'
         ),
-        allowNull: false
+        // allowNull: false
 
     },
     lista_de_juegos: {

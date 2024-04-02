@@ -3,16 +3,27 @@ import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { where } from "sequelize";
 
 const filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(filename);
-import sharp from 'sharp';
+
 
 //mirar todas las ruleta
 export async function mirar(req, res) {
     try {
         const ruletas = await ruleta.findAll(
+            {
+                attributes: {
+                    exclude: [
+                        'certificado_de_importacion_ruleta',                       
+                        'Factura_compra_ruleta',
+                        'serial_modelo_ruleta',
+                        'fotografia_de_respaldo',
+                        'fotografia_de_placa',
+                        'fotografia_de_billetero',
+                    ],
+                }
+            }
 
         )
         res.json(ruletas)
@@ -29,149 +40,145 @@ export async function crear(req, res) {
         const files = req.files;
         const {
             //numeor de seriales
-            N_serial,
-            N_serial_1,
-            N_serial_2,
-            N_serial_3,
-            N_serial_4,
-            N_serial_5,
-            N_serial_6,
-            N_serial_7,
-            N_serial_8,
-            N_serial_9,
-            N_serial_10,
+            Numero_serial,
+            Numero_serial_pantalla_1,
+            Numero_serial_pantalla_2,
+            Numero_serial_pantalla_3,
+            Numero_serial_pantalla_4,
+            Numero_serial_pantalla_5,
+            Numero_serial_pantalla_6,
+            Numero_serial_pantalla_7,
+            Numero_serial_pantalla_8,
+            Numero_serial_pantalla_9,
+            Numero_serial_pantalla_10,
             //billeteros
-            N_billetero_1,
-            N_billetero_2,
-            N_billetero_3,
-            N_billetero_4,
-            N_billetero_5,
-            N_billetero_6,
-            N_billetero_7,
-            N_billetero_8,
-            N_billetero_9,
-            N_billetero_10,
+            Numero_billetero_1,
+            Numero_billetero_2,
+            Numero_billetero_3,
+            Numero_billetero_4,
+            Numero_billetero_5,
+            Numero_billetero_6,
+            Numero_billetero_7,
+            Numero_billetero_8,
+            Numero_billetero_9,
+            Numero_billetero_10,
             //stacker
-            N_stacker_1,
-            N_stacker_2,
-            N_stacker_3,
-            N_stacker_4,
-            N_stacker_5,
-            N_stacker_6,
-            N_stacker_7,
-            N_stacker_8,
-            N_stacker_9,
-            N_stacker_10,
+            Numero_stacker_1,
+            Numero_stacker_2,
+            Numero_stacker_3,
+            Numero_stacker_4,
+            Numero_stacker_5,
+            Numero_stacker_6,
+            Numero_stacker_7,
+            Numero_stacker_8,
+            Numero_stacker_9,
+            Numero_stacker_10,
             //demas datos 
-            nombre_de_ruleta,
-            N_modulos,
-            Marca,
+            Nombre_de_ruleta,
+            marca_del_billetero,
+            Numero_modulos,
+            Marca_ruleta,
             Description,
             Pantalla,
             ubicacion_del_elemento,
             fecha_instalaccion_ruleta,
+            fecha_modificacion,
+
             //nummero unico de coljuegos
 
 
-            Nuc_1,
-            Nuc_2,
-            Nuc_3,
-            Nuc_4,
-            Nuc_5,
-            Nuc_6,
-            Nuc_7,
-            Nuc_8,
-            Nuc_9,
-            Nuc_10, } = req.body;
+            Numero_unico_coljuegos_1,
+            Numero_unico_coljuegos_2,
+            Numero_unico_coljuegos_3,
+            Numero_unico_coljuegos_4,
+            Numero_unico_coljuegos_5,
+            Numero_unico_coljuegos_6,
+            Numero_unico_coljuegos_7,
+            Numero_unico_coljuegos_8,
+            Numero_unico_coljuegos_9,
+            Numero_unico_coljuegos_10,
+            usuarioId
+        } = req.body;
 
         const imagesData = {};
 
         for (const key in files) {
             const file = files[key][0];
             const imageData = await fs.promises.readFile(file.path);
-
-            let width, height; // Definir las dimensiones específicas para cada imagen
-
-            // Lógica para determinar las dimensiones para cada imagen
-            if (key === 'certificado_de_importacion_ruleta') {
-                width = 800;  // Ancho deseado para certificado_de_importacion
-                height = 880; // Alto deseado para certificado_de_importacion
-            } else if (key === 'Factura_compra_ruleta') {
-                width = 800;  // Ancho deseado para fotografia_de_maquina
-                height = 800; // Alto deseado para fotografia_de_maquina
-            } else if(key === 'fotografia_de_respaldo') {
-                width = 800;  // Ancho deseado para certificado_de_importacion
-                height = 980; // Alto deseado para certificado_de_importacion
-            } 
-
-            // Reducir el tamaño de la imagen utilizando sharp con las dimensiones específicas
-            const compressedImageData = await sharp(imageData)
-                .resize({ width, height })
-                .toBuffer();
-
-            imagesData[key] = compressedImageData;
+            imagesData[key] = imageData;
         }
         const ruletas = await ruleta.create({
+
             //numeor de seriales
-            N_serial: N_serial,
-            N_serial_1: N_serial_1,
-            N_serial_2: N_serial_2,
-            N_serial_3: N_serial_3,
-            N_serial_4: N_serial_4,
-            N_serial_5: N_serial_5,
-            N_serial_6: N_serial_6,
-            N_serial_7: N_serial_7,
-            N_serial_8: N_serial_8,
-            N_serial_9: N_serial_9,
-            N_serial_10: N_serial_10,
+            Numero_serial,
+            Numero_serial_pantalla_1,
+            Numero_serial_pantalla_2,
+            Numero_serial_pantalla_3,
+            Numero_serial_pantalla_4,
+            Numero_serial_pantalla_5,
+            Numero_serial_pantalla_6,
+            Numero_serial_pantalla_7,
+            Numero_serial_pantalla_8,
+            Numero_serial_pantalla_9,
+            Numero_serial_pantalla_10,
             //billeteros
-            N_billetero_1: N_billetero_1,
-            N_billetero_2: N_billetero_2,
-            N_billetero_3: N_billetero_3,
-            N_billetero_4: N_billetero_4,
-            N_billetero_5: N_billetero_5,
-            N_billetero_6: N_billetero_6,
-            N_billetero_7: N_billetero_7,
-            N_billetero_8: N_billetero_8,
-            N_billetero_9: N_billetero_9,
-            N_billetero_10: N_billetero_10,
+            Numero_billetero_1,
+            Numero_billetero_2,
+            Numero_billetero_3,
+            Numero_billetero_4,
+            Numero_billetero_5,
+            Numero_billetero_6,
+            Numero_billetero_7,
+            Numero_billetero_8,
+            Numero_billetero_9,
+            Numero_billetero_10,
             //stacker
-            N_stacker_1: N_stacker_1,
-            N_stacker_2: N_stacker_2,
-            N_stacker_3: N_stacker_3,
-            N_stacker_4: N_stacker_4,
-            N_stacker_5: N_stacker_5,
-            N_stacker_6: N_stacker_6,
-            N_stacker_7: N_stacker_7,
-            N_stacker_8: N_stacker_8,
-            N_stacker_9: N_stacker_9,
-            N_stacker_10: N_stacker_10,
+            Numero_stacker_1,
+            Numero_stacker_2,
+            Numero_stacker_3,
+            Numero_stacker_4,
+            Numero_stacker_5,
+            Numero_stacker_6,
+            Numero_stacker_7,
+            Numero_stacker_8,
+            Numero_stacker_9,
+            Numero_stacker_10,
             //demas datos 
-            nombre_de_ruleta: nombre_de_ruleta,
-            N_modulos: N_modulos,
-            Marca: Marca,
-            Description: Description,
-            Pantalla: Pantalla,
-            ubicacion_del_elemento: ubicacion_del_elemento,
+            Nombre_de_ruleta,
+            marca_del_billetero,
+            Numero_modulos,
+            Marca_ruleta,
+            Description,
+            Pantalla,
+            ubicacion_del_elemento,
             fecha_instalaccion_ruleta,
+            fecha_modificacion,
+
+            //nummero unico de coljuegos
+
+
+            Numero_unico_coljuegos_1,
+            Numero_unico_coljuegos_2,
+            Numero_unico_coljuegos_3,
+            Numero_unico_coljuegos_4,
+            Numero_unico_coljuegos_5,
+            Numero_unico_coljuegos_6,
+            Numero_unico_coljuegos_7,
+            Numero_unico_coljuegos_8,
+            Numero_unico_coljuegos_9,
+            Numero_unico_coljuegos_10,
+            usuarioId,
             //fotos
             certificado_de_importacion_ruleta: imagesData.certificado_de_importacion_ruleta,
             fotografia_de_ruleta: imagesData.fotografia_de_ruleta,
             Factura_compra_ruleta: imagesData.Factura_compra_ruleta,
             serial_modelo_ruleta: imagesData.serial_modelo_ruleta,
-            fotografia_de_respaldo:imagesData.fotografia_de_respaldo,
-            // usuarioId
-            //nummero unico de coljuegos
-            Nuc_1: Nuc_1,
-            Nuc_2: Nuc_2,
-            Nuc_3: Nuc_3,
-            Nuc_4: Nuc_4,
-            Nuc_5: Nuc_5,
-            Nuc_6: Nuc_6,
-            Nuc_7: Nuc_7,
-            Nuc_8: Nuc_8,
-            Nuc_9: Nuc_9,
-            Nuc_10: Nuc_10,
+            fotografia_de_respaldo: imagesData.fotografia_de_respaldo,
+            fotografia_de_placa: imagesData.fotografia_de_placa,
+            fotografia_de_billetero: imagesData.fotografia_de_billetero
+
+
+
 
         });
 
@@ -203,52 +210,65 @@ export async function eliminar(req, res) {
 export async function eliminar1(req, res) {
 
     try {
-        const { N_serial } = req.params
+        const { Numero_serial } = req.params
         await ruleta.destroy({
             where: {
-                N_serial: N_serial
+                Numero_serial: Numero_serial
             }
         })
         return res.status(200).json({ message: 'maquina eliminad correctamente' });
 
     } catch (error) {
 
-        res.status(300).json({ message: error.message });
         console.log(error);
+        res.status(300).json({ message: error.message });
 
     }
 }
-export async function eliminarNuc(req, res) {
-
+export async function mirar_ruleta_ubiccacion(req, res) {
+    const { ubicacion_del_elemento } = req.params
     try {
-        const { Nuc_1 } = req.params
-        await ruleta.destroy({
-            where: {
-                Nuc_1: Nuc_1
+        const buscarid = await ruleta.findAll({
+            where: { ubicacion_del_elemento: ubicacion_del_elemento, },
+            attributes: {
+                exclude: [
+                    'certificado_de_importacion_ruleta',
+                    'fotografia_de_ruleta',
+                    'Factura_compra_ruleta',
+                    'serial_modelo_ruleta',
+                    'fotografia_de_respaldo',
+                    'fotografia_de_placa',
+                    'fotografia_de_billetero',
+
+
+                ],
             }
+            // include: fotografia
+
         })
-        return res.status(200).json({ message: 'maquina eliminad correctamente' });
-
+        res.json(buscarid)
     } catch (error) {
-
         res.status(300).json({ message: error.message });
-        console.log(error);
 
     }
+
 }
+
+
+
 //buscar
 export async function buscar(req, res) {
-    const { N_serial } = req.params
+    const { Numero_serial } = req.params
     try {
         const buscar_serial = await ruleta.findOne({
             where: {
-                N_serial: N_serial
+                Numero_serial: Numero_serial
             }
         })
         res.json(buscar_serial)
-
     } catch (error) {
-        console.log(error);
+        // console.log(error);
+        res.status(300).json({ message: error.message });
 
     }
 }
@@ -333,20 +353,20 @@ export async function editar_ruleta(req, res) {
         //     editar.N_billetero_7 = N_billetero_7,
         //     editar.N_billetero_8 = N_billetero_8,
         //     editar.N_billetero_9 = N_billetero_9,
-            // editar.N_billetero_10 = N_billetero_10,
-            //stacker
-            // editar.N_stacker_1 = N_stacker_1,
-            // editar.N_stacker_2 = N_stacker_2,
-            // editar.N_stacker_3 = N_stacker_3,
-            // editar.N_stacker_4 = N_stacker_4,
-            // editar.N_stacker_5 = N_stacker_5,
-            // editar.N_stacker_6 = N_stacker_6,
-            // editar.N_stacker_7 = N_stacker_7,
-            // editar.N_stacker_8 = N_stacker_8,
-            // editar.N_stacker_9 = N_stacker_9,
-            // editar.N_stacker_10 = N_stacker_10,
-            //demas datos 
-            editar.nombre_de_ruleta = nombre_de_ruleta,
+        // editar.N_billetero_10 = N_billetero_10,
+        //stacker
+        // editar.N_stacker_1 = N_stacker_1,
+        // editar.N_stacker_2 = N_stacker_2,
+        // editar.N_stacker_3 = N_stacker_3,
+        // editar.N_stacker_4 = N_stacker_4,
+        // editar.N_stacker_5 = N_stacker_5,
+        // editar.N_stacker_6 = N_stacker_6,
+        // editar.N_stacker_7 = N_stacker_7,
+        // editar.N_stacker_8 = N_stacker_8,
+        // editar.N_stacker_9 = N_stacker_9,
+        // editar.N_stacker_10 = N_stacker_10,
+        //demas datos 
+        editar.nombre_de_ruleta = nombre_de_ruleta,
             // editar.N_modulos = N_modulos,
             // editar.Marca = Marca,
             // editar.Description = Description,
@@ -367,54 +387,70 @@ export async function editar_ruleta(req, res) {
 }
 
 export async function editar_ruleta_serial(req, res) {
-    const { N_serial } = req.params
+    const { Numero_serial_ruleta } = req.params
     const files = req.files;
 
     try {
         const {
             //numeor de seriales
-            // N_serial,
-            N_serial_1,
-            N_serial_2,
-            N_serial_3,
-            N_serial_4,
-            N_serial_5,
-            N_serial_6,
-            N_serial_7,
-            N_serial_8,
-            N_serial_9,
-            N_serial_10,
+            Numero_serial_ruleta,
+            Numero_serial_pantalla_1,
+            Numero_serial_pantalla_2,
+            Numero_serial_pantalla_3,
+            Numero_serial_pantalla_4,
+            Numero_serial_pantalla_5,
+            Numero_serial_pantalla_6,
+            Numero_serial_pantalla_7,
+            Numero_serial_pantalla_8,
+            Numero_serial_pantalla_9,
+            Numero_serial_pantalla_10,
             //billeteros
-            N_billetero_1,
-            N_billetero_2,
-            N_billetero_3,
-            N_billetero_4,
-            N_billetero_5,
-            N_billetero_6,
-            N_billetero_7,
-            N_billetero_8,
-            N_billetero_9,
-            N_billetero_10,
+            Numero_billetero_1,
+            Numero_billetero_2,
+            Numero_billetero_3,
+            Numero_billetero_4,
+            Numero_billetero_5,
+            Numero_billetero_6,
+            Numero_billetero_7,
+            Numero_billetero_8,
+            Numero_billetero_9,
+            Numero_billetero_10,
             //stacker
-            N_stacker_1,
-            N_stacker_2,
-            N_stacker_3,
-            N_stacker_4,
-            N_stacker_5,
-            N_stacker_6,
-            N_stacker_7,
-            N_stacker_8,
-            N_stacker_9,
-            N_stacker_10,
+            Numero_stacker_1,
+            Numero_stacker_2,
+            Numero_stacker_3,
+            Numero_stacker_4,
+            Numero_stacker_5,
+            Numero_stacker_6,
+            Numero_stacker_7,
+            Numero_stacker_8,
+            Numero_stacker_9,
+            Numero_stacker_10,
             //demas datos 
-            nombre_de_ruleta,
-            N_modulos,
-            Marca,
+            Nombre_de_ruleta,
+            marca_del_billetero,
+            Numero_modulos,
+            Marca_ruleta,
             Description,
             Pantalla,
             ubicacion_del_elemento,
-            fecha_instalaccion_ruleta
-            //fotos
+            fecha_instalaccion_ruleta,
+            fecha_modificacion,
+
+            //nummero unico de coljuegos
+
+
+            Numero_unico_coljuegos_1,
+            Numero_unico_coljuegos_2,
+            Numero_unico_coljuegos_3,
+            Numero_unico_coljuegos_4,
+            Numero_unico_coljuegos_5,
+            Numero_unico_coljuegos_6,
+            Numero_unico_coljuegos_7,
+            Numero_unico_coljuegos_8,
+            Numero_unico_coljuegos_9,
+            Numero_unico_coljuegos_10,
+            usuarioId
         } = req.body;
 
         const imagesData = {};
@@ -428,56 +464,74 @@ export async function editar_ruleta_serial(req, res) {
             {
 
                 //numeor de seriales
-                N_serial_1,
-                N_serial_2,
-                N_serial_3,
-                N_serial_4,
-                N_serial_5,
-                N_serial_6,
-                N_serial_7,
-                N_serial_8,
-                N_serial_9,
-                N_serial_10,
+                Numero_serial_ruleta,
+                Numero_serial_pantalla_1,
+                Numero_serial_pantalla_2,
+                Numero_serial_pantalla_3,
+                Numero_serial_pantalla_4,
+                Numero_serial_pantalla_5,
+                Numero_serial_pantalla_6,
+                Numero_serial_pantalla_7,
+                Numero_serial_pantalla_8,
+                Numero_serial_pantalla_9,
+                Numero_serial_pantalla_10,
                 //billeteros
-                N_billetero_1,
-                N_billetero_2,
-                N_billetero_3,
-                N_billetero_4,
-                N_billetero_5,
-                N_billetero_6,
-                N_billetero_7,
-                N_billetero_8,
-                N_billetero_9,
-                N_billetero_10,
+                Numero_billetero_1,
+                Numero_billetero_2,
+                Numero_billetero_3,
+                Numero_billetero_4,
+                Numero_billetero_5,
+                Numero_billetero_6,
+                Numero_billetero_7,
+                Numero_billetero_8,
+                Numero_billetero_9,
+                Numero_billetero_10,
                 //stacker
-                N_stacker_1,
-                N_stacker_2,
-                N_stacker_3,
-                N_stacker_4,
-                N_stacker_5,
-                N_stacker_6,
-                N_stacker_7,
-                N_stacker_8,
-                N_stacker_9,
-                N_stacker_10,
+                Numero_stacker_1,
+                Numero_stacker_2,
+                Numero_stacker_3,
+                Numero_stacker_4,
+                Numero_stacker_5,
+                Numero_stacker_6,
+                Numero_stacker_7,
+                Numero_stacker_8,
+                Numero_stacker_9,
+                Numero_stacker_10,
                 //demas datos 
-                nombre_de_ruleta,
-                N_modulos,
-                Marca,
+                Nombre_de_ruleta,
+                marca_del_billetero,
+                Numero_modulos,
+                Marca_ruleta,
                 Description,
                 Pantalla,
                 ubicacion_del_elemento,
                 fecha_instalaccion_ruleta,
+                fecha_modificacion,
+
+                //nummero unico de coljuegos
+
+
+                Numero_unico_coljuegos_1,
+                Numero_unico_coljuegos_2,
+                Numero_unico_coljuegos_3,
+                Numero_unico_coljuegos_4,
+                Numero_unico_coljuegos_5,
+                Numero_unico_coljuegos_6,
+                Numero_unico_coljuegos_7,
+                Numero_unico_coljuegos_8,
+                Numero_unico_coljuegos_9,
+                Numero_unico_coljuegos_10,
+                usuarioId,
                 // //fotos
                 certificado_de_importacion_ruleta: imagesData.certificado_de_importacion_ruleta,
                 fotografia_de_ruleta: imagesData.fotografia_de_ruleta,
                 Factura_compra_ruleta: imagesData.Factura_compra_ruleta,
                 serial_modelo_ruleta: imagesData.serial_modelo_ruleta,
-                fotografia_de_respaldo:imagesData.fotografia_de_respaldo
+                fotografia_de_respaldo: imagesData.fotografia_de_respaldo
 
             },
             {
-                where: { N_serial }
+                where: { Numero_serial }
 
             }
         );

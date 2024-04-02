@@ -9,251 +9,253 @@ export const ruleta = sequelize.define('ruletas', {
         primaryKey: true,
     },
     //numero unico de coljuegos
-    Nuc_1: {
+    Numero_unico_coljuegos_1: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
     },
-    Nuc_2: {
-        type: DataTypes.BIGINT,
-
-        allowNull: false,
-        unique: true
-    },
-    Nuc_3: {
+    Numero_unico_coljuegos_2: {
         type: DataTypes.BIGINT,
 
         allowNull: false,
         unique: true
     },
-    Nuc_4: {
+    Numero_unico_coljuegos_3: {
         type: DataTypes.BIGINT,
 
         allowNull: false,
         unique: true
     },
-    Nuc_5: {
+    Numero_unico_coljuegos_4: {
         type: DataTypes.BIGINT,
 
         allowNull: false,
         unique: true
     },
-    Nuc_6: {
+    Numero_unico_coljuegos_5: {
         type: DataTypes.BIGINT,
 
         allowNull: false,
         unique: true
     },
-    Nuc_7: {
+    Numero_unico_coljuegos_6: {
         type: DataTypes.BIGINT,
 
         allowNull: false,
         unique: true
     },
-    Nuc_8: {
+    Numero_unico_coljuegos_7: {
         type: DataTypes.BIGINT,
 
         allowNull: false,
         unique: true
     },
-    Nuc_9: {
+    Numero_unico_coljuegos_8: {
+        type: DataTypes.BIGINT,
+
+        allowNull: false,
+        unique: true
+    },
+    Numero_unico_coljuegos_9: {
         type: DataTypes.BIGINT,
 
         // allowNull: false,
         // unique: true
     },
-    Nuc_10: {
+    Numero_unico_coljuegos_10: {
         type: DataTypes.BIGINT,
         // allowNull: false,
         // unique: true
         //NUMEROS SERILES DE LA RULETA
     },
-    N_serial: {
+    Numero_serial: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    N_serial_1: {
+    //numero_serial_pantalla_ruleta
+    Numero_serial_pantalla_1: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    N_serial_2: {
+    Numero_serial_pantalla_2: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    N_serial_3: {
+    Numero_serial_pantalla_3: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    N_serial_4: {
+    Numero_serial_pantalla_4: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    N_serial_5: {
+    Numero_serial_pantalla_5: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    N_serial_6: {
+    Numero_serial_pantalla_6: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    N_serial_7: {
+    Numero_serial_pantalla_7: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    N_serial_8: {
+    Numero_serial_pantalla_8: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    N_serial_9: {
+    Numero_serial_pantalla_9: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    N_serial_10: {
+    Numero_serial_pantalla_10: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
     //NUMERO DE LOS BILLETEROS
-    N_billetero_1: {
+    Numero_billetero_1: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
     },
-    N_billetero_2: {
+    Numero_billetero_2: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
     },
-    N_billetero_3: {
-        type: DataTypes.BIGINT,
-        allowNull: false,
-        unique: true
-
-    },
-    N_billetero_4: {
+    Numero_billetero_3: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
-    N_billetero_5: {
+    Numero_billetero_4: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
-    N_billetero_6: {
+    Numero_billetero_5: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
-    N_billetero_7: {
+    Numero_billetero_6: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
-    N_billetero_8: {
-        type: DataTypes.BIGINT,
-        allowNull: false,
-        unique: true
-    },
-    N_billetero_9: {
+    Numero_billetero_7: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
-    N_billetero_10: {
+    Numero_billetero_8: {
+        type: DataTypes.BIGINT,
+        allowNull: false,
+        unique: true
+    },
+    Numero_billetero_9: {
+        type: DataTypes.BIGINT,
+        allowNull: false,
+        unique: true
+
+    },
+    Numero_billetero_10: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
     // NUMERO DE LOS STACKER
-    N_stacker_1: {
+    Numero_stacker_1: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
-    N_stacker_2: {
+    Numero_stacker_2: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
-    N_stacker_3: {
+    Numero_stacker_3: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
-    N_stacker_4: {
+    Numero_stacker_4: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
-    N_stacker_5: {
+    Numero_stacker_5: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
-    N_stacker_6: {
+    Numero_stacker_6: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
-    N_stacker_7: {
+    Numero_stacker_7: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
-    N_stacker_8: {
+    Numero_stacker_8: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
     },
-    N_stacker_9: {
+    Numero_stacker_9: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
-    N_stacker_10: {
+    Numero_stacker_10: {
         type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
 
     },
     //demas datos
-    nombre_de_ruleta: {
+    
+    Nombre_de_ruleta: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    N_modulos: {
+    Numero_modulos: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    // Marca: {
-    //     type: DataTypes.STRING,
-    //     // allowNull: false
-    // },
+    Marca_ruleta: {
+        type: DataTypes.STRING,
+        // allowNull: false
+    },
     Description: {
         type: DataTypes.STRING,
         allowNull: false
@@ -269,9 +271,24 @@ export const ruleta = sequelize.define('ruletas', {
             'Pasto Parque Infantil',
             'Ipiales Casino Tango'
         ),
-        allowNull: false,
+        // allowNull: false,
+    },
+    marca_del_billetero: {
+        type: DataTypes.ENUM(
+            'VIZION',
+            'MEI',
+            'UBA',
+            'ARDAC',
+            '1'
+        ),
+        // allowNull: false
+
     },
     fecha_instalaccion_ruleta: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    fecha_modificacion: {
         type: DataTypes.DATE,
         allowNull: false
     },
@@ -298,6 +315,10 @@ export const ruleta = sequelize.define('ruletas', {
     },
     fotografia_de_billetero: {
         type: DataTypes.BLOB('long'),
+    },
+    fotografia_de_placa:{
+        type:DataTypes.BLOB('long'),
+        // allowNull: false
     }
 },
 
