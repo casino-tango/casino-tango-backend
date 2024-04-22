@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-const TOKEN_SECRET = process.env.TOKEN_SECRET
+// const TOKEN_SECRET = process.env.TOKEN_SECRET
 
 // export const validar = (req, res, next) => {
 //     try {
