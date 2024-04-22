@@ -266,9 +266,9 @@ export const ruleta = sequelize.define('ruletas', {
     },
     ubicacion_del_elemento: {
         type: DataTypes.ENUM(
-            'Popayán Centro Comercial Campanario',
-            'Popayán Centro Comercial Terraplaza',
-            'Pasto Parque Infantil',
+            'Popayán Centro Comercial Campanario Casino Tango',
+            'Popayán Centro Comercial Terraplaza Casino Tango',
+            'Pasto Parque Infantil Casino Tango',
             'Ipiales Casino Tango'
         ),
         // allowNull: false,
@@ -290,7 +290,7 @@ export const ruleta = sequelize.define('ruletas', {
     },
     fecha_modificacion: {
         type: DataTypes.DATE,
-        allowNull: false
+        // allowNull: false
     },
     // DATOS DE IMG
     certificado_de_importacion_ruleta: {

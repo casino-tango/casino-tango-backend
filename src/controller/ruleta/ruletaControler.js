@@ -11,11 +11,35 @@ const __dirname = path.dirname(filename);
 //mirar todas las ruleta
 export async function mirar(req, res) {
     try {
-        const ruletas = await ruleta.findAll(
-            {
+        const usuario = req.user; // Cambiado de ruleta a usuario
+        let datos;
+        if (usuario.rol === 'Admin') {
+            datos = await ruleta.findAll( // Utilizando el nombre correcto del modelo
+                {
+                    attributes: {
+                        exclude: [
+                            'certificado_de_importacion_ruleta',
+                            'Factura_compra_ruleta',
+                            'serial_modelo_ruleta',
+                            'fotografia_de_respaldo',
+                            'fotografia_de_placa',
+                            'fotografia_de_billetero',
+                        ],
+                    }
+                }
+            );
+        } else if (usuario.rol === 'Usuario') {
+            const ubicacion_del_elemento = usuario.ubicacion_del_elemento;
+            if (!ubicacion_del_elemento) {
+                return res.status(400).json({ error: 'La ubicación del elemento es requerida' });
+            }
+            datos = await ruleta.findAll({
+                where: {
+                    ubicacion_del_elemento: ubicacion_del_elemento
+                },
                 attributes: {
                     exclude: [
-                        'certificado_de_importacion_ruleta',                       
+                        'certificado_de_importacion_ruleta',
                         'Factura_compra_ruleta',
                         'serial_modelo_ruleta',
                         'fotografia_de_respaldo',
@@ -23,16 +47,15 @@ export async function mirar(req, res) {
                         'fotografia_de_billetero',
                     ],
                 }
-            }
-
-        )
-        res.json(ruletas)
+            });
+        }
+        res.json(datos);
     } catch (error) {
         res.status(500).json({ message: error.message });
         console.log(error);
-
     }
 }
+
 //creaer por ruleta
 export async function crear(req, res) {
     try {
@@ -82,7 +105,7 @@ export async function crear(req, res) {
             Pantalla,
             ubicacion_del_elemento,
             fecha_instalaccion_ruleta,
-            fecha_modificacion,
+            // fecha_modificacion,
 
             //nummero unico de coljuegos
 
@@ -152,7 +175,7 @@ export async function crear(req, res) {
             Pantalla,
             ubicacion_del_elemento,
             fecha_instalaccion_ruleta,
-            fecha_modificacion,
+            // fecha_modificacion,
 
             //nummero unico de coljuegos
 
@@ -387,13 +410,13 @@ export async function editar_ruleta(req, res) {
 }
 
 export async function editar_ruleta_serial(req, res) {
-    const { Numero_serial_ruleta } = req.params
+    const { Numero_serial } = req.params
     const files = req.files;
 
     try {
         const {
             //numeor de seriales
-            Numero_serial_ruleta,
+
             Numero_serial_pantalla_1,
             Numero_serial_pantalla_2,
             Numero_serial_pantalla_3,
@@ -464,7 +487,7 @@ export async function editar_ruleta_serial(req, res) {
             {
 
                 //numeor de seriales
-                Numero_serial_ruleta,
+
                 Numero_serial_pantalla_1,
                 Numero_serial_pantalla_2,
                 Numero_serial_pantalla_3,
@@ -531,7 +554,8 @@ export async function editar_ruleta_serial(req, res) {
 
             },
             {
-                where: { Numero_serial }
+                where: { Numero_serial },
+                returning: true
 
             }
         );

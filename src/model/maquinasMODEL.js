@@ -47,17 +47,17 @@ export const maquina = sequelize.define('maquinas', {
         type: DataTypes.STRING(50),
         // allowNull: false
     },
-    Numero_cpu:{
-        type:DataTypes.STRING
+    Numero_cpu: {
+        type: DataTypes.STRING
     },
-    ubicacion_de_la_maquina: {
+    ubicacion_del_elemento: {
         type: DataTypes.ENUM(
             'Popayán Centro Comercial Campanario Casino Tango',
             'Popayán Centro Comercial Terraplaza Casino Tango',
             'Pasto Parque Infantil Casino Tango',
             'Ipiales Casino Tango'
         ),
-        // allowNull: false,
+        allowNull: false,
     },
     libreria_maquina: {
         type: DataTypes.STRING(50),
@@ -143,24 +143,24 @@ export const maquina = sequelize.define('maquinas', {
         type: DataTypes.TEXT(250),
 
     },
-    descripcion_maquina: { 
+    descripcion_maquina: {
         type: DataTypes.TEXT(150)
     },
     fecha_instalaccion: {
         type: DataTypes.DATE,
-        allowNull: false
+        // allowNull: false
     },
     fecha_modificacion: {
         type: DataTypes.DATE,
-        allowNull: false
+        // allowNull: false
     },
-  
+
 },
     { timestamps: false, })
 
-    maquina.hasMany(fotografia, {foreinkey: 'maquinaId',sourceKey: 'id'})
-    fotografia.belongsTo(maquina, { foreignKey: "maquinaId", targetKey: "id" })
-    
+maquina.hasMany(fotografia, { foreinkey: 'maquinaId', sourceKey: 'id' })
+fotografia.belongsTo(maquina, { foreignKey: "maquinaId", targetKey: "id" })
+
 
 
 export default maquina

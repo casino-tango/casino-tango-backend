@@ -20,18 +20,21 @@ export const usuarios = sequelize.define('usuario', {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
-
     },
-    ubicacion_de_la_maquina: {
+    rol: {
+        type: DataTypes.ENUM('Admin', 'Usuario'),
+        allowNull: false
+    },
+    ubicacion_del_elemento: {
         type: DataTypes.ENUM(
-            '01',
-            '02',
-            '03',
-            '04',
+            'Popayán Centro Comercial Campanario Casino Tango',
+            'Popayán Centro Comercial Terraplaza Casino Tango',
+            'Pasto Parque Infantil Casino Tango',
+            'Admin',
+            'Ipiales Casino Tango'
         ),
-        // allowNull: false,
-    },
-   
+
+    }
 
 },
     {
@@ -53,4 +56,8 @@ usuarios.hasMany(ruleta, {
 })
 ruleta.belongsTo(usuarios, { foreignKey: "usuarioId", targetKey: "id" })
 
+// usuarios.hasMany(roles, {
+//     foreinkey: 'usuariosId',
+//     sourceKey: 'id'
+// })
 

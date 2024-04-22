@@ -13,19 +13,71 @@ const __dirname = path.dirname(filename);
 import nodemailer from 'nodemailer';
 
 
+// export async function mirar(req, res) {
+//     try {
+//         const datos = await maquina.findAll(
+//             {
+//                 include: [{
+//                     model: fotografia,
+//                     attributes: ['fotografia_la_maquina',]
+//                 }]
+//             }
+//         );
+//         res.json(datos);
+//     } catch (error) {
+//         res.status(500).json({ error: 'Error al obtener los datos' });
+//     }
+// }
+
 export async function mirar(req, res) {
     try {
-        const datos = await maquina.findAll(
-            {
+        const usuario = req.user;
+
+        let datos;
+        if (usuario.rol === 'Admin') {
+            // Si el usuario es un administrador, mostrar todas las máquinas
+            datos = await maquina.findAll({
                 include: [{
                     model: fotografia,
-                    attributes: ['fotografia_la_maquina',]
+                    attributes: ['fotografia_la_maquina']
                 }]
+            });
+        } else if (usuario.rol === 'Usuario') {
+            const ubicacion_del_elemento = usuario.ubicacion_del_elemento;
+            if (!ubicacion_del_elemento) {
+                return res.status(400).json({ error: 'La ubicación del elemento es requerida' });
             }
-        );
+            // Si el usuario es un usuario normal, mostrar solo las máquinas de su ubicación
+            datos = await maquina.findAll({
+                where: {
+                    ubicacion_del_elemento: ubicacion_del_elemento
+                },
+                include: [{
+                    model: fotografia,
+                    attributes: ['fotografia_la_maquina']
+                }]
+            });
+        }
+
         res.json(datos);
     } catch (error) {
+        console.log(error);
         res.status(500).json({ error: 'Error al obtener los datos' });
+    }
+}
+
+
+
+export async function mirar_maquina_ubiccacion(req, res) {
+    const { ubicacion_del_elemento } = req.params
+    try {
+        const buscarid = await maquina.findAll({
+            where: { ubicacion_del_elemento: ubicacion_del_elemento, },
+            // include: fotografia
+        })
+        res.json(buscarid)
+    } catch (error) {
+        res.status(300).json({ message: error.message });
     }
 }
 
@@ -45,14 +97,14 @@ export async function crear(req, res) {
             Marca_pantalla,
             Marca_maquina,
             Numero_cpu,
-            ubicacion_de_la_maquina,
+            ubicacion_del_elemento,
             libreria_maquina,
             cantidad_de_juegos,
             marca_billetero,
             lista_de_juegos,
             descripcion_maquina,
             fecha_instalaccion,
-            fecha_modificacion,
+            // fecha_modificacion,
             usuarioId
         } = req.body;
 
@@ -68,14 +120,14 @@ export async function crear(req, res) {
             Marca_pantalla,
             Marca_maquina,
             Numero_cpu,
-            ubicacion_de_la_maquina,
+            ubicacion_del_elemento,
             libreria_maquina,
             cantidad_de_juegos,
             marca_billetero,
             lista_de_juegos,
             descripcion_maquina,
             fecha_instalaccion,
-            fecha_modificacion,
+            // fecha_modificacion,
             usuarioId
         });
 
@@ -172,18 +224,7 @@ export async function eliminarmaquina_Nuc(req, res) {
     }
 }
 
-export async function mirar_maquina_ubiccacion(req, res) {
-    const { ubicacion_de_la_maquina } = req.params
-    try {
-        const buscarid = await maquina.findAll({
-            where: { ubicacion_de_la_maquina: ubicacion_de_la_maquina, },
-            // include: fotografia
-        })
-        res.json(buscarid)
-    } catch (error) {
-        res.status(300).json({ message: error.message });
-    }
-}
+
 
 export async function buscar_serial(req, res) {
     const { Numero_serial } = req.params
@@ -217,9 +258,9 @@ export async function buscarNuc(req, res) {
 
 export async function editar_maquina1(req, res) {
     const { Numero_serial } = req.params;
+    const files = req.files;
 
     try {
-        const files = req.files;
         const {
             Numero_unico_coljuegos,
             Numero_billetero,
@@ -260,7 +301,7 @@ export async function editar_maquina1(req, res) {
                 marca_billetero,
                 lista_de_juegos,
                 descripcion_maquina,
-                fecha_modificacion,
+                // fecha_modificacion,
                 usuarioId,
                 // Actualiza la imagen si se proporciona una nueva.
             },

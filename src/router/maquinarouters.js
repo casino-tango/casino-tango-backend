@@ -10,7 +10,7 @@ import {
 } from "../controller/maquina/maquinacontroller.js";
 import multer from 'multer';
 import cron from 'node-cron';
-
+import { validar2 } from "../middleware/validertoken.js";
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -19,8 +19,6 @@ import fs from 'fs'; // Import the 'fs' module
 const filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(filename);
 const publicPath = path.join(__dirname, '../public');
-
-
 const storage = multer({ dest: publicPath });
 const upload = multer({ storage });
 const router = Router();
@@ -66,16 +64,16 @@ const camposDeArchivos_editados = [
   { name: 'fotografia_la_serial_cpu' },
 ];
 
-router.post('/maquinas', storage.fields(camposDeArchivos), crear)
-router.get('/maquinas', mirar)
+router.post('/maquinas',validar2, storage.fields(camposDeArchivos), crear)
+router.get('/maquinas',validar2, mirar)
 
-router.delete('/maquinas/:Numero_serial', eliminarmaquina_N_serial);
-router.delete('/maquina/:id', eliminarmaquina_id);
+router.delete('/maquinas/:Numero_serial',validar2, eliminarmaquina_N_serial);
+router.delete('/maquina/:id',validar2, eliminarmaquina_id);
 
-router.get('/maquina/:ubicacion_de_la_maquina', mirar_maquina_ubiccacion);
-router.get('/maquinas/:Numero_serial', buscar_serial);
+router.get('/maquina/:ubicacion_del_elemento', mirar_maquina_ubiccacion);
+router.get('/maquinas/:Numero_serial',validar2, buscar_serial);
 
-router.put('/maquinas/:Numero_serial', storage.fields(camposDeArchivos_editados), editar_maquina1);
+router.put('/maquinas/:Numero_serial',storage.fields(camposDeArchivos_editados), editar_maquina1);
 
 
 cron.schedule('* * * * *', () => {
@@ -100,12 +98,13 @@ cron.schedule('* * * * *', () => {
 });
 
 //Respuestas HTTP CORS
-router.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  next();
-});
+// router.use(function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   res.header('Access-Control-Allow-Credentials', 'true'); // This allows credentials like cookies to be sent with the request
+//   next();
+// });
 
 
 export default router

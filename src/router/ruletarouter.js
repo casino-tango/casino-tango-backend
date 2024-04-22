@@ -17,6 +17,7 @@ import {
 import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { validar2 } from "../middleware/validertoken.js";
 
 
 
@@ -47,28 +48,28 @@ const camposdeImg_editados = [
   { name: 'fotografia_de_placa' },
   { name: 'fotografia_de_billetero' }
 ]
-router.post('/ruletas', storage.fields(camposdeImg), crear)
-router.get('/ruletas/:Numero_serial', buscar)
+router.post('/ruletas', validar2, storage.fields(camposdeImg), crear)
+router.get('/ruletas/:Numero_serial', validar2, buscar)
 
-router.get('/ruletas', mirar)
+router.get('/ruletas', validar2, mirar)
 
 router.delete('/ruleta/:id', eliminar)
 
-router.delete('/ruletas/:Numero_serial', eliminar1)
+router.delete('/ruletas/:Numero_serial', validar2, eliminar1)
 
-router.put('/ruleta2/:id', editar_ruleta)
+router.put('/ruleta2/:id', validar2, editar_ruleta)
 
-router.put('/ruletas/:Numero_serial_ruleta', storage.fields(camposdeImg_editados), editar_ruleta_serial)
+router.put('/ruletas/:Numero_serial', validar2, storage.fields(camposdeImg_editados), editar_ruleta_serial)
 
-router.get('/ruleta/:ubicacion_del_elemento',mirar_ruleta_ubiccacion)
+router.get('/ruleta/:ubicacion_del_elemento', mirar_ruleta_ubiccacion)
 
 
 //Respuestas HTTP CORS
-router.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  next();
-});
+// router.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Methods", "*");
+//   res.header("Access-Control-Allow-Headers", "*");
+//   next();
+// });
 
 export default router
