@@ -6,7 +6,7 @@ app.use(express.json())
 import cors from 'cors'
 app.use(cors({
     // origin: 'http://localhost:3001', // Permite solicitudes solo desde este origen
-    origin:'https://casino-tango-backend.onrender.com',
+    origin:'https://proyecto-final-uh4h.onrender.com',
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Permite estos métodos HTTP
     allowedHeaders: ['Content-Type', 'Authorization'], // Permite estos encabezados en la solicitud
     credentials: true // Esto permite que las credenciales como las cookies se envíen con la solicitud
