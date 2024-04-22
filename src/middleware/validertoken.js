@@ -53,6 +53,7 @@ export const validar2 = (req, res, next) => {
         const token = req.cookies.token;
         if (!token) {
             console.log('No has iniciado sesión');
+
             return res.status(401).json({ message: 'No has iniciado sesión' });
         }
 
@@ -64,7 +65,7 @@ export const validar2 = (req, res, next) => {
 
             req.user = user;
 
-            if (user.rol === 'Admin' && (req.method === 'POST' || req.method === 'GET'|| req.method === 'DELETE' || req.method === 'PUT')) {
+            if (user.rol === 'Admin' && (req.method === 'POST' || req.method === 'GET' || req.method === 'DELETE' || req.method === 'PUT')) {
                 // Si es administrador y la solicitud es POST o DELETE, permitir el acceso
                 next();
             } else if (user.rol === 'Usuario' && req.method === 'GET') {

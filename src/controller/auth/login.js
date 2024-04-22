@@ -38,7 +38,7 @@ export async function login(req, res) {
                 });
                 res.cookie("token", token, {
                     httOnly: true,
-                    maxAge:+ 2 * 60 * 60 * 100
+                    maxAge: 2 * 60 * 60 * 100
                 })
                 res.status(200).json({
                     code: 201,
