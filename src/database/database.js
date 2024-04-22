@@ -5,10 +5,10 @@ import { Sequelize } from "sequelize";
 
 // * conxion con render*****
  export const sequelize = new Sequelize({
-  database: 'casino_tango_8d44',
-  username: 'casino_tango_8d44_user',
-  password: 'GTgHmSo4yOsHEVkduql6oZ26K8TSUGPH',
-  host: 'dpg-coj6cjgcmk4c73af91dg-a.oregon-postgres.render.com',
+  database: 'casino_tango_wva4',
+  username: 'casino_tango_wva4_user',
+  password: 'VS2wZ7OEfSH2ix2OS6CQpyCREdOyZBDi',
+  host: 'dpg-cojb0c6n7f5s73c68ang-a.oregon-postgres.render.com',
   dialect: 'postgres',
   dialectOptions: {
     ssl: true,
@@ -33,6 +33,9 @@ import { Sequelize } from "sequelize";
 //   }
 // });
 
+
+
+
 // export const sequelize = new Sequelize(
 //   process.env.DATABASE_DATABASE,
 //   process.env.DATABASE_USERNAME,
@@ -43,13 +46,3 @@ import { Sequelize } from "sequelize";
 // });
 
 
-async function testConnection() {
-  try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-}
-
-testConnection();
